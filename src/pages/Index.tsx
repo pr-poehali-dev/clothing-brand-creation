@@ -40,6 +40,14 @@ const products: Product[] = [
     priceNum: 4500,
     image: 'https://cdn.poehali.dev/files/448a49f8-2847-4053-916f-8c427b4928fa.png',
     sizes: ['S', 'M', 'L', 'XL']
+  },
+  {
+    id: 3,
+    name: 'Лонгслив BAPE x Mastermind',
+    price: '7 600 ₽',
+    priceNum: 7600,
+    image: 'https://cdn.poehali.dev/files/a84dcbde-dac1-4f21-8996-1a46d5acda8c.png',
+    sizes: ['S', 'M', 'L', 'XL']
   }
 ];
 

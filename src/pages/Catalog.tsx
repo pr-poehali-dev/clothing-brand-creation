@@ -36,10 +36,19 @@ const products: Product[] = [
     image: 'https://cdn.poehali.dev/files/448a49f8-2847-4053-916f-8c427b4928fa.png',
     sizes: ['S', 'M', 'L', 'XL'],
     category: 'Футболки'
+  },
+  {
+    id: 3,
+    name: 'Лонгслив BAPE x Mastermind',
+    price: '7 600 ₽',
+    priceNum: 7600,
+    image: 'https://cdn.poehali.dev/files/a84dcbde-dac1-4f21-8996-1a46d5acda8c.png',
+    sizes: ['S', 'M', 'L', 'XL'],
+    category: 'Лонгсливы'
   }
 ];
 
-const categories = ['Все', 'Футболки', 'Худи', 'Куртки', 'Брюки', 'Аксессуары'];
+const categories = ['Все', 'Футболки', 'Лонгсливы', 'Худи', 'Куртки', 'Брюки', 'Аксессуары'];
 const allSizes = ['XS', 'S', 'M', 'L', 'XL'];
 
 export default function Catalog() {

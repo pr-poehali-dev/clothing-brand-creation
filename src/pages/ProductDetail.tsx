@@ -72,6 +72,33 @@ const products: Product[] = [
       'Принт методом шелкографии',
       'Оригинальные бирки обоих брендов'
     ]
+  },
+  {
+    id: 3,
+    name: 'Лонгслив BAPE x Mastermind',
+    price: '7 600 ₽',
+    priceNum: 7600,
+    image: 'https://cdn.poehali.dev/files/a84dcbde-dac1-4f21-8996-1a46d5acda8c.png',
+    images: [
+      'https://cdn.poehali.dev/files/a84dcbde-dac1-4f21-8996-1a46d5acda8c.png',
+      'https://cdn.poehali.dev/files/a84dcbde-dac1-4f21-8996-1a46d5acda8c.png'
+    ],
+    sizes: ['S', 'M', 'L', 'XL'],
+    description: 'Чёрный лонгслив из легендарной коллаборации BAPE x Mastermind Japan. Белый принт с черепом и логотипом. Эксклюзивный японский стритвир для истинных ценителей.',
+    composition: '100% хлопок премиум-качества',
+    care: [
+      'Машинная стирка при 30°C',
+      'Не отбеливать',
+      'Гладить при низкой температуре',
+      'Стирать наизнанку'
+    ],
+    details: [
+      'Эксклюзивная коллаборация',
+      'Плотная ткань 220 г/м²',
+      'Длинные рукава с манжетами',
+      'Принт методом шелкографии',
+      'Оригинальные бирки BAPE x Mastermind'
+    ]
   }
 ];
 
