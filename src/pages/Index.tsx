@@ -200,11 +200,7 @@ export default function Index() {
                         <Button 
                           className="w-full py-6 text-sm tracking-widest font-light"
                           onClick={() => {
-                            toast({
-                              title: "Заказ оформлен",
-                              description: "Мы свяжемся с вами в ближайшее время",
-                            });
-                            setCart([]);
+                            navigate('/checkout', { state: { cart } });
                           }}
                         >
                           ОФОРМИТЬ ЗАКАЗ
