@@ -24,12 +24,12 @@ const products: Product[] = [
   {
     id: 1,
     name: 'Футболка BAPE Camo',
-    price: '12 500 ₽',
-    priceNum: 12500,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/5964cf4e-8d9b-4d6b-a90b-dd3c902a7d1b.jpg',
+    price: '4 900 ₽',
+    priceNum: 4900,
+    image: 'https://cdn.poehali.dev/files/e93cfdd8-462a-4736-b0c1-2aee55c5e9bc.jpg',
     images: [
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/5964cf4e-8d9b-4d6b-a90b-dd3c902a7d1b.jpg',
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/a3be293e-6ece-4bcc-a231-e6609bedd887.jpg'
+      'https://cdn.poehali.dev/files/e93cfdd8-462a-4736-b0c1-2aee55c5e9bc.jpg',
+      'https://cdn.poehali.dev/files/e93cfdd8-462a-4736-b0c1-2aee55c5e9bc.jpg'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     description: 'Оригинальная футболка BAPE с культовым камуфляжным принтом. Легендарный японский стритвир в классическом исполнении. Идеально для создания смелых городских образов.',
