@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -59,6 +60,7 @@ const sizeGuide = {
 };
 
 export default function Index() {
+  const navigate = useNavigate();
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -110,6 +112,7 @@ export default function Index() {
           <div className="flex items-center justify-between">
             <h1 className="text-2xl tracking-[0.2em] font-light">ATELIER</h1>
             <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
+              <button onClick={() => navigate('/catalog')} className="hover:opacity-60 transition-opacity hidden md:block">КАТАЛОГ</button>
               <a href="#collection" className="hover:opacity-60 transition-opacity hidden md:block">КОЛЛЕКЦИЯ</a>
               <a href="#contact" className="hover:opacity-60 transition-opacity hidden md:block">КОНТАКТЫ</a>
               <Sheet>
@@ -229,8 +232,9 @@ export default function Index() {
           {products.map((product, index) => (
             <Card 
               key={product.id} 
-              className="group overflow-hidden border-0 bg-transparent animate-fade-in"
+              className="group overflow-hidden border-0 bg-transparent animate-fade-in cursor-pointer"
               style={{ animationDelay: `${index * 150}ms` }}
+              onClick={() => navigate(`/product/${product.id}`)}
             >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden mb-6">
@@ -243,64 +247,30 @@ export default function Index() {
                 <div className="space-y-3">
                   <h4 className="text-lg font-light tracking-wide">{product.name}</h4>
                   <p className="text-muted-foreground font-light">{product.price}</p>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button 
-                        variant="outline" 
-                        className="w-full mt-4 font-light tracking-wider text-xs"
-                        onClick={() => {
-                          setSelectedProduct(product);
-                          setSelectedSizeForProduct('');
-                        }}
-                      >
-                        ВЫБРАТЬ РАЗМЕР
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-md">
-                      <DialogHeader>
-                        <DialogTitle className="text-xl font-light tracking-wide">
-                          {selectedProduct?.name}
-                        </DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-6 py-4">
-                        <div>
-                          <p className="text-sm font-light mb-4 text-muted-foreground">Выберите размер:</p>
-                          <div className="grid grid-cols-5 gap-2">
-                            {selectedProduct?.sizes.map(size => (
-                              <button
-                                key={size}
-                                onClick={() => setSelectedSizeForProduct(size)}
-                                className={`text-sm border border-border px-4 py-3 font-light tracking-wider transition-colors hover:border-primary ${
-                                  selectedSizeForProduct === size ? 'bg-primary text-primary-foreground border-primary' : ''
-                                }`}
-                              >
-                                {size}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                        <Button 
-                          className="w-full py-6 text-sm tracking-widest font-light"
-                          disabled={!selectedSizeForProduct}
-                          onClick={() => {
-                            if (selectedProduct && selectedSizeForProduct) {
-                              addToCart(selectedProduct, selectedSizeForProduct);
-                              setSelectedSizeForProduct('');
-                            }
-                          }}
-                        >
-                          ДОБАВИТЬ В КОРЗИНУ
-                        </Button>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
+                  <Button 
+                    variant="outline" 
+                    className="w-full mt-4 font-light tracking-wider text-xs"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/product/${product.id}`);
+                    }}
+                  >
+                    ПОДРОБНЕЕ
+                  </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center space-y-4">
+          <Button 
+            variant="outline" 
+            className="px-8 py-6 text-sm tracking-widest font-light mr-4"
+            onClick={() => navigate('/catalog')}
+          >
+            СМОТРЕТЬ ВСЁ
+          </Button>
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" className="px-8 py-6 text-sm tracking-widest font-light">
