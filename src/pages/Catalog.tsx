@@ -51,7 +51,7 @@ const products: Product[] = [
     name: 'Кофта BAPE',
     price: '14 990 ₽',
     priceNum: 14990,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/a37d001e-94b3-4e95-85d5-6a8ec1e6bbb5.jpg',
+    image: 'https://cdn.poehali.dev/files/5a35657d-4005-4171-bfb7-ce8dc0355b6b.jpg',
     sizes: ['S', 'M', 'L', 'XL'],
     category: 'Худи'
   }
