@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,22 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: string;
-  priceNum: number;
-  image: string;
-  size: string;
-  quantity: number;
-}
+import { useCart } from '@/contexts/CartContext';
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { toast } = useToast();
-  const cartItems = (location.state?.cart as CartItem[]) || [];
+  const { cart: cartItems, cartTotal, clearCart } = useCart();
   
   const [formData, setFormData] = useState({
     firstName: '',
@@ -35,7 +25,6 @@ export default function Checkout() {
     paymentMethod: 'card'
   });
 
-  const cartTotal = cartItems.reduce((sum, item) => sum + item.priceNum * item.quantity, 0);
   const deliveryFee = cartTotal >= 10000 ? 0 : 500;
   const totalWithDelivery = cartTotal + deliveryFee;
 
@@ -58,6 +47,7 @@ export default function Checkout() {
       return;
     }
 
+    clearCart();
     toast({
       title: "Заказ оформлен!",
       description: `Сумма к оплате: ${totalWithDelivery.toLocaleString('ru-RU')} ₽`,

@@ -5,6 +5,7 @@ import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
+import { useCart } from '@/contexts/CartContext';
 
 interface Product {
   id: number;
@@ -133,6 +134,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { addToCart } = useCart();
   
   const product = products.find(p => p.id === Number(id));
   const [selectedImage, setSelectedImage] = useState(0);
@@ -151,7 +153,7 @@ export default function ProductDetail() {
     );
   }
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
     if (!selectedSize) {
       toast({
         title: "Выберите размер",
@@ -161,6 +163,7 @@ export default function ProductDetail() {
       return;
     }
 
+    addToCart(product, selectedSize);
     toast({
       title: "Добавлено в корзину",
       description: `${product.name}, размер ${selectedSize}`,
@@ -249,7 +252,7 @@ export default function ProductDetail() {
 
             <Button 
               className="w-full py-7 text-sm tracking-widest font-light"
-              onClick={addToCart}
+              onClick={handleAddToCart}
             >
               ДОБАВИТЬ В КОРЗИНУ
             </Button>

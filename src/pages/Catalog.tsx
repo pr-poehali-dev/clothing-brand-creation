@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import Icon from '@/components/ui/icon';
-import { useToast } from '@/hooks/use-toast';
+import { CartSheet } from '@/components/CartSheet';
 
 interface Product {
   id: number;
@@ -62,12 +62,10 @@ const allSizes = ['XS', 'S', 'M', 'L', 'XL'];
 
 export default function Catalog() {
   const navigate = useNavigate();
-  const { toast } = useToast();
   
   const [selectedCategory, setSelectedCategory] = useState('Все');
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState('default');
-  const [cartCount] = useState(0);
 
   const toggleSize = (size: string) => {
     setSelectedSizes(prev => 
@@ -108,14 +106,7 @@ export default function Catalog() {
             </button>
             <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
               <a href="/#contact" className="hover:opacity-60 transition-opacity hidden md:block">КОНТАКТЫ</a>
-              <Button variant="ghost" className="relative p-2 hover:bg-transparent">
-                <Icon name="ShoppingBag" size={22} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-light">
-                    {cartCount}
-                  </span>
-                )}
-              </Button>
+              <CartSheet />
             </nav>
           </div>
         </div>
