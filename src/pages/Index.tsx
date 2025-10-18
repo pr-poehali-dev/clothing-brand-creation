@@ -32,6 +32,14 @@ const products: Product[] = [
     priceNum: 4900,
     image: 'https://cdn.poehali.dev/files/e93cfdd8-462a-4736-b0c1-2aee55c5e9bc.jpg',
     sizes: ['S', 'M', 'L', 'XL']
+  },
+  {
+    id: 2,
+    name: 'Футболка BAPE x Mastermind',
+    price: '4 500 ₽',
+    priceNum: 4500,
+    image: 'https://cdn.poehali.dev/files/448a49f8-2847-4053-916f-8c427b4928fa.png',
+    sizes: ['S', 'M', 'L', 'XL']
   }
 ];
 
