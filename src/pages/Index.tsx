@@ -4,13 +4,31 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
+import { useToast } from '@/hooks/use-toast';
 
-const products = [
+interface Product {
+  id: number;
+  name: string;
+  price: string;
+  priceNum: number;
+  image: string;
+  sizes: string[];
+}
+
+interface CartItem extends Product {
+  size: string;
+  quantity: number;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: 'Кашемировое пальто',
     price: '145 000 ₽',
+    priceNum: 145000,
     image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/979ed970-2c7b-4ee8-bf4e-2630bdd375c9.jpg',
     sizes: ['XS', 'S', 'M', 'L']
   },
@@ -18,6 +36,7 @@ const products = [
     id: 2,
     name: 'Шёлковая блуза',
     price: '68 000 ₽',
+    priceNum: 68000,
     image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/6d4153b0-59df-4ee5-a5c6-e67be8b00305.jpg',
     sizes: ['XS', 'S', 'M', 'L', 'XL']
   },
@@ -25,6 +44,7 @@ const products = [
     id: 3,
     name: 'Брюки из льна',
     price: '52 000 ₽',
+    priceNum: 52000,
     image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/2b5cc0cb-1ad4-4de3-8d9a-762fbe40b7e0.jpg',
     sizes: ['S', 'M', 'L']
   }
@@ -40,6 +60,48 @@ const sizeGuide = {
 
 export default function Index() {
   const [selectedSize, setSelectedSize] = useState<string>('');
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedSizeForProduct, setSelectedSizeForProduct] = useState<string>('');
+  const { toast } = useToast();
+
+  const addToCart = (product: Product, size: string) => {
+    const existingItem = cart.find(item => item.id === product.id && item.size === size);
+    
+    if (existingItem) {
+      setCart(cart.map(item => 
+        item.id === product.id && item.size === size
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+    } else {
+      setCart([...cart, { ...product, size, quantity: 1 }]);
+    }
+    
+    toast({
+      title: "Добавлено в корзину",
+      description: `${product.name}, размер ${size}`,
+    });
+  };
+
+  const removeFromCart = (id: number, size: string) => {
+    setCart(cart.filter(item => !(item.id === id && item.size === size)));
+  };
+
+  const updateQuantity = (id: number, size: string, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(id, size);
+      return;
+    }
+    setCart(cart.map(item => 
+      item.id === id && item.size === size
+        ? { ...item, quantity }
+        : item
+    ));
+  };
+
+  const cartTotal = cart.reduce((sum, item) => sum + item.priceNum * item.quantity, 0);
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className="min-h-screen bg-background">
@@ -47,9 +109,100 @@ export default function Index() {
         <div className="container mx-auto px-6 py-8">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl tracking-[0.2em] font-light">ATELIER</h1>
-            <nav className="hidden md:flex gap-12 text-sm tracking-wider">
-              <a href="#collection" className="hover:opacity-60 transition-opacity">КОЛЛЕКЦИЯ</a>
-              <a href="#contact" className="hover:opacity-60 transition-opacity">КОНТАКТЫ</a>
+            <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
+              <a href="#collection" className="hover:opacity-60 transition-opacity hidden md:block">КОЛЛЕКЦИЯ</a>
+              <a href="#contact" className="hover:opacity-60 transition-opacity hidden md:block">КОНТАКТЫ</a>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" className="relative p-2 hover:bg-transparent">
+                    <Icon name="ShoppingBag" size={22} />
+                    {cartCount > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-light">
+                        {cartCount}
+                      </span>
+                    )}
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="w-full sm:max-w-lg">
+                  <SheetHeader>
+                    <SheetTitle className="text-2xl font-light tracking-wide">Корзина</SheetTitle>
+                  </SheetHeader>
+                  
+                  {cart.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-[60vh] text-center">
+                      <Icon name="ShoppingBag" size={48} className="text-muted-foreground mb-4" />
+                      <p className="text-muted-foreground font-light">Корзина пуста</p>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col h-full">
+                      <div className="flex-1 overflow-auto py-6 space-y-4">
+                        {cart.map((item) => (
+                          <div key={`${item.id}-${item.size}`} className="flex gap-4 py-4 border-b border-border/40">
+                            <img 
+                              src={item.image} 
+                              alt={item.name}
+                              className="w-24 h-32 object-cover"
+                            />
+                            <div className="flex-1 flex flex-col justify-between">
+                              <div>
+                                <h4 className="font-light tracking-wide mb-1">{item.name}</h4>
+                                <p className="text-sm text-muted-foreground font-light">Размер: {item.size}</p>
+                                <p className="text-sm font-light mt-2">{item.price}</p>
+                              </div>
+                              <div className="flex items-center gap-3">
+                                <Button 
+                                  variant="outline" 
+                                  size="icon"
+                                  className="h-8 w-8"
+                                  onClick={() => updateQuantity(item.id, item.size, item.quantity - 1)}
+                                >
+                                  <Icon name="Minus" size={14} />
+                                </Button>
+                                <span className="font-light text-sm w-8 text-center">{item.quantity}</span>
+                                <Button 
+                                  variant="outline" 
+                                  size="icon"
+                                  className="h-8 w-8"
+                                  onClick={() => updateQuantity(item.id, item.size, item.quantity + 1)}
+                                >
+                                  <Icon name="Plus" size={14} />
+                                </Button>
+                                <Button 
+                                  variant="ghost" 
+                                  size="icon"
+                                  className="h-8 w-8 ml-auto"
+                                  onClick={() => removeFromCart(item.id, item.size)}
+                                >
+                                  <Icon name="Trash2" size={14} />
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="border-t border-border/40 pt-6 space-y-4">
+                        <div className="flex justify-between items-center text-lg">
+                          <span className="font-light tracking-wide">Итого:</span>
+                          <span className="font-light">{cartTotal.toLocaleString('ru-RU')} ₽</span>
+                        </div>
+                        <Button 
+                          className="w-full py-6 text-sm tracking-widest font-light"
+                          onClick={() => {
+                            toast({
+                              title: "Заказ оформлен",
+                              description: "Мы свяжемся с вами в ближайшее время",
+                            });
+                            setCart([]);
+                          }}
+                        >
+                          ОФОРМИТЬ ЗАКАЗ
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </SheetContent>
+              </Sheet>
             </nav>
           </div>
         </div>
@@ -87,19 +240,60 @@ export default function Index() {
                     className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <h4 className="text-lg font-light tracking-wide">{product.name}</h4>
                   <p className="text-muted-foreground font-light">{product.price}</p>
-                  <div className="flex gap-2 pt-2">
-                    {product.sizes.map(size => (
-                      <span 
-                        key={size}
-                        className="text-xs border border-border px-3 py-1 font-light tracking-wider"
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full mt-4 font-light tracking-wider text-xs"
+                        onClick={() => {
+                          setSelectedProduct(product);
+                          setSelectedSizeForProduct('');
+                        }}
                       >
-                        {size}
-                      </span>
-                    ))}
-                  </div>
+                        ВЫБРАТЬ РАЗМЕР
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="text-xl font-light tracking-wide">
+                          {selectedProduct?.name}
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-6 py-4">
+                        <div>
+                          <p className="text-sm font-light mb-4 text-muted-foreground">Выберите размер:</p>
+                          <div className="grid grid-cols-5 gap-2">
+                            {selectedProduct?.sizes.map(size => (
+                              <button
+                                key={size}
+                                onClick={() => setSelectedSizeForProduct(size)}
+                                className={`text-sm border border-border px-4 py-3 font-light tracking-wider transition-colors hover:border-primary ${
+                                  selectedSizeForProduct === size ? 'bg-primary text-primary-foreground border-primary' : ''
+                                }`}
+                              >
+                                {size}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        <Button 
+                          className="w-full py-6 text-sm tracking-widest font-light"
+                          disabled={!selectedSizeForProduct}
+                          onClick={() => {
+                            if (selectedProduct && selectedSizeForProduct) {
+                              addToCart(selectedProduct, selectedSizeForProduct);
+                              setSelectedSizeForProduct('');
+                            }
+                          }}
+                        >
+                          ДОБАВИТЬ В КОРЗИНУ
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
