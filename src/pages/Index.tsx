@@ -24,32 +24,7 @@ interface CartItem extends Product {
   quantity: number;
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Кашемировое пальто',
-    price: '145 000 ₽',
-    priceNum: 145000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/979ed970-2c7b-4ee8-bf4e-2630bdd375c9.jpg',
-    sizes: ['XS', 'S', 'M', 'L']
-  },
-  {
-    id: 2,
-    name: 'Шёлковая блуза',
-    price: '68 000 ₽',
-    priceNum: 68000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/6d4153b0-59df-4ee5-a5c6-e67be8b00305.jpg',
-    sizes: ['XS', 'S', 'M', 'L', 'XL']
-  },
-  {
-    id: 3,
-    name: 'Брюки из льна',
-    price: '52 000 ₽',
-    priceNum: 52000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/2b5cc0cb-1ad4-4de3-8d9a-762fbe40b7e0.jpg',
-    sizes: ['S', 'M', 'L']
-  }
-];
+const products: Product[] = [];
 
 const sizeGuide = {
   'XS': { bust: '78-82', waist: '58-62', hips: '86-90' },
@@ -110,7 +85,7 @@ export default function Index() {
       <header className="border-b border-border/40">
         <div className="container mx-auto px-6 py-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl tracking-[0.2em] font-light">ATELIER</h1>
+            <h1 className="text-2xl tracking-[0.2em] font-light">OUTLET</h1>
             <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
               <button onClick={() => navigate('/catalog')} className="hover:opacity-60 transition-opacity hidden md:block">КАТАЛОГ</button>
               <a href="#collection" className="hover:opacity-60 transition-opacity hidden md:block">КОЛЛЕКЦИЯ</a>

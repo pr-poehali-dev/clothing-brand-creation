@@ -18,62 +18,7 @@ interface Product {
   category: string;
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Кашемировое пальто',
-    price: '145 000 ₽',
-    priceNum: 145000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/979ed970-2c7b-4ee8-bf4e-2630bdd375c9.jpg',
-    sizes: ['XS', 'S', 'M', 'L'],
-    category: 'Верхняя одежда'
-  },
-  {
-    id: 2,
-    name: 'Шёлковая блуза',
-    price: '68 000 ₽',
-    priceNum: 68000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/6d4153b0-59df-4ee5-a5c6-e67be8b00305.jpg',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    category: 'Блузы'
-  },
-  {
-    id: 3,
-    name: 'Брюки из льна',
-    price: '52 000 ₽',
-    priceNum: 52000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/2b5cc0cb-1ad4-4de3-8d9a-762fbe40b7e0.jpg',
-    sizes: ['S', 'M', 'L'],
-    category: 'Брюки'
-  },
-  {
-    id: 4,
-    name: 'Кашемировый джемпер',
-    price: '89 000 ₽',
-    priceNum: 89000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/9e4d0ee0-8865-43c5-91c0-fe598969b571.jpg',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    category: 'Трикотаж'
-  },
-  {
-    id: 5,
-    name: 'Шерстяное платье',
-    price: '95 000 ₽',
-    priceNum: 95000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/c804d217-11fa-451e-974e-02997b72dd35.jpg',
-    sizes: ['XS', 'S', 'M', 'L'],
-    category: 'Платья'
-  },
-  {
-    id: 6,
-    name: 'Шёлковый платок',
-    price: '32 000 ₽',
-    priceNum: 32000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/a830cf3e-be1b-403e-9e3c-0c81e4db167c.jpg',
-    sizes: ['ONE SIZE'],
-    category: 'Аксессуары'
-  }
-];
+const products: Product[] = [];
 
 const categories = ['Все', 'Верхняя одежда', 'Блузы', 'Брюки', 'Трикотаж', 'Платья', 'Аксессуары'];
 const allSizes = ['XS', 'S', 'M', 'L', 'XL'];
@@ -122,7 +67,7 @@ export default function Catalog() {
               onClick={() => navigate('/')}
               className="text-2xl tracking-[0.2em] font-light hover:opacity-60 transition-opacity"
             >
-              ATELIER
+              OUTLET
             </button>
             <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
               <a href="/#collection" className="hover:opacity-60 transition-opacity hidden md:block">КОЛЛЕКЦИЯ</a>
