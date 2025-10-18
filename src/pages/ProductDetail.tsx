@@ -23,80 +23,28 @@ interface Product {
 const products: Product[] = [
   {
     id: 1,
-    name: 'Кашемировое пальто',
-    price: '145 000 ₽',
-    priceNum: 145000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/979ed970-2c7b-4ee8-bf4e-2630bdd375c9.jpg',
+    name: 'Футболка BAPE Camo',
+    price: '12 500 ₽',
+    priceNum: 12500,
+    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/5964cf4e-8d9b-4d6b-a90b-dd3c902a7d1b.jpg',
     images: [
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/979ed970-2c7b-4ee8-bf4e-2630bdd375c9.jpg',
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/81925721-ed5a-4cb5-ba18-d10f869b5cf5.jpg'
+      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/5964cf4e-8d9b-4d6b-a90b-dd3c902a7d1b.jpg',
+      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/a3be293e-6ece-4bcc-a231-e6609bedd887.jpg'
     ],
-    sizes: ['XS', 'S', 'M', 'L'],
-    description: 'Элегантное пальто из итальянского кашемира высочайшего качества. Классический крой с минималистичным дизайном создаёт утончённый силуэт. Идеально для межсезонья и прохладных вечеров.',
-    composition: '100% кашемир (Италия)',
-    care: [
-      'Сухая химчистка',
-      'Не стирать',
-      'Не отбеливать',
-      'Хранить на плечиках'
-    ],
-    details: [
-      'Длина изделия: 95 см',
-      'Классический прямой крой',
-      'Два кармана на молнии',
-      'Подкладка из шёлка'
-    ]
-  },
-  {
-    id: 2,
-    name: 'Шёлковая блуза',
-    price: '68 000 ₽',
-    priceNum: 68000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/6d4153b0-59df-4ee5-a5c6-e67be8b00305.jpg',
-    images: [
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/6d4153b0-59df-4ee5-a5c6-e67be8b00305.jpg',
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/c616e7d7-8814-49e2-bc0f-ffe4930c843d.jpg'
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    description: 'Роскошная блуза из натурального шёлка с элегантным струящимся силуэтом. Универсальная модель для создания изысканных образов. Нежная текстура ткани подчёркивает утончённость стиля.',
-    composition: '100% шёлк (Китай)',
-    care: [
-      'Ручная стирка в холодной воде',
-      'Не отжимать',
-      'Гладить через ткань',
-      'Сушить в горизонтальном положении'
-    ],
-    details: [
-      'Свободный крой',
-      'Длина: 68 см',
-      'Скрытая застёжка на пуговицах',
-      'Удлинённые манжеты'
-    ]
-  },
-  {
-    id: 3,
-    name: 'Брюки из льна',
-    price: '52 000 ₽',
-    priceNum: 52000,
-    image: 'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/2b5cc0cb-1ad4-4de3-8d9a-762fbe40b7e0.jpg',
-    images: [
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/2b5cc0cb-1ad4-4de3-8d9a-762fbe40b7e0.jpg',
-      'https://cdn.poehali.dev/projects/716d89dc-4a32-4ce1-9453-48cb4fe25d70/files/198d430c-c1ff-4fe6-ba85-d381293c02dd.jpg'
-    ],
-    sizes: ['S', 'M', 'L'],
-    description: 'Лёгкие брюки из европейского льна премиум-качества. Комфортная посадка и естественная фактура ткани создают непринуждённый элегантный образ. Идеальны для тёплого сезона.',
-    composition: '100% лён (Франция)',
+    sizes: ['S', 'M', 'L', 'XL'],
+    description: 'Оригинальная футболка BAPE с культовым камуфляжным принтом. Легендарный японский стритвир в классическом исполнении. Идеально для создания смелых городских образов.',
+    composition: '100% хлопок премиум-качества',
     care: [
       'Машинная стирка при 30°C',
       'Не отбеливать',
-      'Гладить с паром',
-      'Можно химчистка'
+      'Гладить при низкой температуре',
+      'Стирать наизнанку'
     ],
     details: [
-      'Высокая посадка',
-      'Прямой крой',
-      'Два боковых кармана',
-      'Потайная молния сбоку'
+      'Классический прямой крой',
+      'Плотная ткань 180 г/м²',
+      'Принт методом шелкографии',
+      'Оригинальная бирка BAPE'
     ]
   }
 ];
@@ -151,7 +99,7 @@ export default function ProductDetail() {
               <Icon name="ArrowLeft" size={20} />
               <span className="text-sm tracking-wider font-light">НАЗАД</span>
             </button>
-            <h1 className="text-2xl tracking-[0.2em] font-light">ATELIER</h1>
+            <h1 className="text-2xl tracking-[0.2em] font-light">OUTLET</h1>
             <div className="w-24"></div>
           </div>
         </div>
