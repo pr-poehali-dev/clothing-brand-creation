@@ -121,7 +121,6 @@ export default function Index() {
             <h1 className="text-2xl tracking-[0.2em] font-light">OUTLET</h1>
             <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
               <button onClick={() => navigate('/catalog')} className="hover:opacity-60 transition-opacity hidden md:block">КАТАЛОГ</button>
-              <a href="#collection" className="hover:opacity-60 transition-opacity hidden md:block">КОЛЛЕКЦИЯ</a>
               <a href="#contact" className="hover:opacity-60 transition-opacity hidden md:block">КОНТАКТЫ</a>
               <Sheet>
                 <SheetTrigger asChild>
@@ -226,10 +225,10 @@ export default function Index() {
         </div>
       </section>
 
-      <section id="collection" className="container mx-auto px-6 py-16">
+      <section className="container mx-auto px-6 py-16">
         <div className="text-center mb-16">
-          <h3 className="text-3xl md:text-4xl font-light mb-4">Новая коллекция</h3>
-          <p className="text-muted-foreground font-light">Весна/Лето 2025</p>
+          <h3 className="text-3xl md:text-4xl font-light mb-4">Наши товары</h3>
+          <p className="text-muted-foreground font-light">Премиум японский стритвир</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

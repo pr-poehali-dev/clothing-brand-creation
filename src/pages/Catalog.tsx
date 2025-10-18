@@ -107,7 +107,6 @@ export default function Catalog() {
               OUTLET
             </button>
             <nav className="flex items-center gap-8 md:gap-12 text-sm tracking-wider">
-              <a href="/#collection" className="hover:opacity-60 transition-opacity hidden md:block">КОЛЛЕКЦИЯ</a>
               <a href="/#contact" className="hover:opacity-60 transition-opacity hidden md:block">КОНТАКТЫ</a>
               <Button variant="ghost" className="relative p-2 hover:bg-transparent">
                 <Icon name="ShoppingBag" size={22} />
